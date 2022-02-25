@@ -27,6 +27,7 @@ resource "aws_lambda_function" "main" {
   handler = "app.lambda_handler"
   role = aws_iam_role.weather-app-policy.arn
   runtime = "python3.7"
+  tracing_config.mode = "PassThrough"
   source_code_hash = filebase64sha256("lambda.zip")
   environment {
     variables = {
